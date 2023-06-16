@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+
+    <style>
+        #main{
+            border: 1px solid black;
+            width: 250px;
+            position: absolute;
+            top: 30%;
+            left: 40%;
+            background-image: url(./2.jpg);
+        }
+        body{
+            background-image: url(./1.jpg);
+            background-color: antiquewhite;
+        }
+        #aaa{
+         
+           
+        }
+        #answers{
+            text-align: center;
+            font-size: xx-large;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body> 
+    
+    <div class="container" id="main">
+        <h1 style="margin-left: 20px;color: aliceblue;" id="ques"></h1>
+        <input style="margin-left: 20px;" onclick="checkAnswer()" type="radio" name="ans" id="ans1">
+        <label style="color: aliceblue;" for="op1" id="op1"></label><br>
+        <input style="margin-left: 20px;" onclick="checkAnswer()" type="radio" name="ans" id="ans2">
+        <label style="color: aliceblue;" for="op2" id="op2"></label><br>
+        <input style="margin-left: 20px;" onclick="checkAnswer()" type="radio" name="ans" id="ans3">
+        <label style="color: aliceblue;" for="op3" id="op3"></label><br>
+        <input style="margin-left: 20px;" onclick="checkAnswer()" type="radio" name="ans" id="ans3">
+        <label style="color: aliceblue;" for="op4" id="op4"></label><br><br>
+        <button style="margin-left: 20px;" id="btn" disabled>Next</button><br><br>
+    </div>
+    
+<div id="aaa">
+    <p id="answers"></p>
+</div>
+
+        <script>
+    
+    
+    var questions = [
+        {
+            ques : "My name is ",
+            op1 : "Zunair",
+            op2 : "Zeeshan",
+            op3 : "Shahzaib",
+            op4 : "Sharjeel",
+            answer : "Zunair"
+        },
+        {
+            ques : "My f.name is ",
+            op1 : "Nadeem",
+            op2 : "Shakir",
+            op3 : "Shayan",
+            op4 : "Ali",
+            answer : "Shakir"
+        },
+        {
+            ques : "My country name is ",
+            op1 : "London",
+            op2 : "France",
+            op3 : "Pakistan",
+            op4 : "America",
+            answer : "Pakistan"
+        }
+    ]
+    var question = document.getElementById("ques");
+    var op1 = document.getElementById("op1");
+    var op2 =document.getElementById("op2");
+    var op3 =  document.getElementById("op3");
+    var op4 =  document.getElementById("op4");
+    var btn = document.getElementById("btn");
+    var i=0;
+    var point = 0
+    function displayQuestion() {
+            question.innerHTML = questions[i].ques;
+            op1.innerHTML = questions[i].op1;
+            op2.innerHTML = questions[i].op2;
+            op3.innerHTML = questions[i].op3;
+            op4.innerHTML = questions[i].op4;
+        }
+        function answers(){
+var answers = document.getElementById("answers");
+answers.innerHTML ="Your Score is : " + point;
+var aaa = document.getElementById("aaa");
+aaa.style =  "margin-left: 40%;border: 1px solid black;width: 250px;height: 100%;color:white;background-color : black"
+        }
+        
+        function checkAnswer() {
+            var selectedOption = document.querySelector('input[name="ans"]:checked');
+         
+                if (selectedOption.nextElementSibling.innerHTML === questions[i].answer){
+                    point++;
+                }
+                btn.disabled = false; // Disable the button
+            }
+        
+        
+        btn.addEventListener("click", function() {
+            checkAnswer();
+            i++;
+            if (i < questions.length) {
+                displayQuestion();
+                btn.disabled = true; // Enable the button for the next question
+                
+            } else {
+                // Quiz finished, display score or perform other actions
+                // alert("Quiz finished! Your score is: " + point);
+                answers();
+            }
+        });
+        
+        displayQuestion();
+</script>
+
+
+
+</body>
+</html>
